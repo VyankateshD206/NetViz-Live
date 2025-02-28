@@ -40,10 +40,16 @@ const D3Config = {
     }
 };
 
-const API_BASE_URL = '/api';
+const API_BASE_URL = window.location.origin + '/api';
 async function fetchNetworkData() {
     try {
-        const response = await fetch(`${API_BASE_URL}/network`);
+        const response = await fetch(`${API_BASE_URL}/network`, {
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        });
+        if (!response.ok) throw new Error('Network response was not ok');
         const data = await response.json();
         console.log('Fetched data:', data);
         return data;
