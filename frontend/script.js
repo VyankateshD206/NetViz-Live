@@ -40,9 +40,10 @@ const D3Config = {
     }
 };
 
+const API_BASE_URL = '/api';
 async function fetchNetworkData() {
     try {
-        const response = await fetch('http://localhost:9080/api/network');
+        const response = await fetch(`${API_BASE_URL}/network`);
         const data = await response.json();
         console.log('Fetched data:', data);
         return data;
